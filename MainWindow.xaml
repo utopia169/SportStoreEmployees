@@ -1,0 +1,270 @@
+﻿<Window x:Class="SportStoreEmployees.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SportStoreEmployees"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Background="Green">
+    <Grid Margin="10"
+          Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" ></RowDefinition>
+            <!--название и выход-->
+            <RowDefinition Height="70"></RowDefinition>
+            <!--кнопки дабавления, удаления-->
+            <RowDefinition Height="*"></RowDefinition>
+            <!--вывод-->
+            <RowDefinition Height="50"></RowDefinition>
+            <!--кол-во сотрудников, страницы-->
+        </Grid.RowDefinitions>
+
+        <!--    1    -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <TextBlock
+                    Text="Sport Store Employees"
+                    FontSize="24"
+                    Margin="15,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBox 
+                    Text="Выйти"
+                    Width="150"
+                    Height="40"
+                    BorderBrush="Red"
+                    Background="Red"
+                    Foreground="White"
+                    BorderThickness="1"
+                    FontSize="18"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,10,0"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontWeight="Bold">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </Grid>
+        </Grid>
+
+        <!--   2   -->
+
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="10">
+
+                    <TextBox 
+                        Width="140"
+                        Height="45"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        Background="Green"
+                        Text="Добавить сотрудника"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Foreground="White">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBox 
+                        Width="140"
+                        Height="45"
+                        FontSize="13"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        Background="Red"
+                        Text="Удалить сотрудника"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Foreground="White"
+                        Margin="10,0,0,0"
+                        FontWeight="SemiBold">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBox 
+                        Width="170"
+                        Height="45"
+                        BorderBrush="Black"
+                        FontSize="13"
+                        BorderThickness="1"
+                        Background="#2196F3"
+                        Text="Редактировать сотрудника"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Foreground="White"
+                        Margin="10,0,0,0"
+                        FontWeight="SemiBold">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <TextBox
+                    Background="LightGray"
+                    Text="  Поиск сотрудника..."
+                    FontSize="16"
+                    Height="45"
+                    Width="175"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="0">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </Grid>
+        </Grid>
+
+        <!--   3   -->
+
+        <DataGrid Grid.Row="2" Margin="5,0,5,0" SelectionChanged="DataGrid_SelectionChanged">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="Height" Value="35"/>
+                    <Setter Property="FontSize" Value="16"/>
+
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="  id" Width="50"/>
+                <DataGridTextColumn Header="Фамилия" Width="150"/>
+                <DataGridTextColumn Header="Имя" Width="150"/>
+                <DataGridTextColumn Header="Должность" Width="150"/>
+                <DataGridTextColumn Header="Телефон" Width="*"/>
+                <DataGridTextColumn Header="На месте" Width="75"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock 
+                    Text="Всего сотрудников:"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Margin="10,0,0,0"/>
+                <TextBox 
+                    Text="1"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontWeight="SemiBold"
+                    FontSize="16"
+                    BorderBrush="Transparent"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBox Text=""
+                         VerticalAlignment="Center"
+                         FontSize="20"
+                         FontWeight="Bold"
+                         BorderBrush="Transparent"
+                         Margin="0,0,10,0"/>
+                <TextBox Text="◀"
+                         VerticalAlignment="Center"
+                         FontSize="20"
+                         FontWeight="SemiBold"
+                         BorderBrush="LightGray"
+                         BorderThickness="2"
+                         Margin="0,0,5,0"
+                         Width="35"
+                         Height="35"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"/>
+                <TextBox Text="1"
+                         Background="#2d9c3c"
+                         VerticalAlignment="Center"
+                         FontSize="20"
+                         FontWeight="SemiBold"
+                         BorderBrush="LightGray"
+                         BorderThickness="2"
+                         Margin="0,0,5,0"
+                         Width="35"
+                         Height="35"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"/>
+                <TextBox Text="2"
+                         VerticalAlignment="Center"
+                         FontSize="20"
+                         FontWeight="SemiBold"
+                         BorderBrush="LightGray"
+                         BorderThickness="2"
+                         Margin="0,0,5,0"
+                         Width="35"
+                         Height="35"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"/>
+                <TextBox Text="3"
+                         VerticalAlignment="Center"
+                         FontSize="20"
+                         FontWeight="SemiBold"
+                         BorderBrush="LightGray"
+                         BorderThickness="2"
+                         Margin="0,0,5,0"
+                         Width="35"
+                         Height="35"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"/>
+                <TextBox Text="▶"
+                         VerticalAlignment="Center"
+                         FontSize="20"
+                         FontWeight="SemiBold"
+                         BorderBrush="LightGray"
+                         BorderThickness="2"
+                         Margin="0,0,5,0"
+                         Width="35"
+                         Height="35"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Window>
