@@ -26,7 +26,7 @@ namespace SportStoreEmployees
         public int RoleId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Phone { get; set; }
+        public int Phone { get; set; }
         public string Email { get; set; }
         public Nullable<System.DateTime> DateInvite { get; set; }
         public Nullable<System.DateTime> DateUnInvite { get; set; }

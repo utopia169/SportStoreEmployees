@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SportStoreEmployeesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateInvite" Type="DateTime" Precision="0" />
+    <Property Name="DateUnInvite" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Employees__RoleI__52593CB8" FromRole="Employees" ToRole="Roles" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Employees__UserI__5165187F" FromRole="Employees" ToRole="Users" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK__Notificat__Emplo__5CD6CB2B" FromRole="Employees" ToRole="Notifications" />
+    <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__Employee__571DF1D5" FromRole="Employees" ToRole="Shifts" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedNotif" Type="DateTime" Precision="3" />
+    <Property Name="IsRead" Type="Boolean" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Notificat__Emplo__5CD6CB2B" FromRole="Notifications" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__RoleI__52593CB8" FromRole="Roles" ToRole="Employees" />
+    <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__RoleId__5812160E" FromRole="Roles" ToRole="Shifts" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleId__4D94879B" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Shifts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="IsHere" Type="Boolean" />
+    <Property Name="CheckIn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CheckOut" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Shifts__Employee__571DF1D5" FromRole="Shifts" ToRole="Employees" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Shifts__RoleId__5812160E" FromRole="Shifts" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__UserI__5165187F" FromRole="Users" ToRole="Employees" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleId__4D94879B" FromRole="Users" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK__Employees__RoleI__52593CB8">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employees__UserI__5165187F">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notificat__Emplo__5CD6CB2B">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Shifts__Employee__571DF1D5">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Shifts" Type="Self.Shifts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shifts">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Shifts__RoleId__5812160E">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Shifts" Type="Self.Shifts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shifts">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__RoleId__4D94879B">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SportStoreEmployees1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employees" EntityType="Self.Employees" />
+    <EntitySet Name="Notifications" EntityType="Self.Notifications" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Shifts" EntityType="Self.Shifts" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK__Employees__RoleI__52593CB8" Association="Self.FK__Employees__RoleI__52593CB8">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employees__UserI__5165187F" Association="Self.FK__Employees__UserI__5165187F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notificat__Emplo__5CD6CB2B" Association="Self.FK__Notificat__Emplo__5CD6CB2B">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Shifts__Employee__571DF1D5" Association="Self.FK__Shifts__Employee__571DF1D5">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Shifts" EntitySet="Shifts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Shifts__RoleId__5812160E" Association="Self.FK__Shifts__RoleId__5812160E">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Shifts" EntitySet="Shifts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__RoleId__4D94879B" Association="Self.FK__Users__RoleId__4D94879B">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

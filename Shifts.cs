@@ -17,6 +17,7 @@ namespace SportStoreEmployees
         public int Id { get; set; }
         public int EmployeeId { get; set; }
         public int RoleId { get; set; }
+        public Nullable<bool> IsHere { get; set; }
         public System.DateTime CheckIn { get; set; }
         public Nullable<System.DateTime> CheckOut { get; set; }
     

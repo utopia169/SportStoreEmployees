@@ -13,10 +13,10 @@ namespace SportStoreEmployees
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SportStoreEmployeesEntities : DbContext
+    public partial class SportStoreEmployees1Entities : DbContext
     {
-        public SportStoreEmployeesEntities()
-            : base("name=SportStoreEmployeesEntities")
+        public SportStoreEmployees1Entities()
+            : base("name=SportStoreEmployees1Entities")
         {
         }
     

@@ -1,4 +1,7 @@
-use SportStoreEmployees
+create database SportStoreEmployees1
+use SportStoreEmployees1
+
+
 CREATE TABLE Roles(
 Id INT PRIMARY KEY IDENTITY(1,1),
 [Name] NVARCHAR (255) NOT NULL,
@@ -20,7 +23,7 @@ UserId INT NOT NULL,
 RoleId INT NOT NULL,
 FirstName NVARCHAR (50) NOT NULL,
 LastName NVARCHAR(50) NOT NULL,
-Phone NVARCHAR(20) NOT NULL,
+Phone int NOT NULL,
 Email NVARCHAR(75) NOT NULL,
 DateInvite DATE DEFAULT GETDATE(),
 DateUnInvite DATE NULL,
@@ -31,6 +34,7 @@ CREATE TABLE Shifts(
 Id INT IDENTITY(1,1) PRIMARY KEY,
 EmployeeId INT NOT NULL,
 RoleId INT NOT NULL,
+IsHere BIT DEFAULT 0,
 CheckIn DATETIME NOT NULL DEFAULT GETDATE(),
 CheckOut DATETIME NULL,
 FOREIGN KEY (EmployeeId) REFERENCES Employees (Id),
@@ -55,6 +59,11 @@ values ('1', '1', '1', '1', '123');
 select * from Users
 
 insert into Employees (UserId, RoleId,FirstName, LastName, Phone, Email)
-values ('1', '1', 'имя', 'фамилия', '812345678', 'email');
+values ('2', '1', 'имя', 'фамилия', '812345678', 'email');
 
 select * from Employees
+
+insert into Shifts(EmployeeId, RoleId, IsHere)
+values ('2', '1', '1');
+
+select * from Shifts

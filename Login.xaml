@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportStoreEmployees"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="400"
+        Title="Авторизация" Height="450" Width="400"
         Background="green">
     <Grid>
         <Border 
@@ -52,7 +52,8 @@
                     Width="250"
                     Height="30"
                     BorderThickness="1"
-                    BorderBrush="Black">
+                    BorderBrush="Black"
+                    VerticalContentAlignment="Center">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="4"/>
@@ -73,13 +74,23 @@
                     Width="250"
                     Height="30"
                     BorderThickness="1"
-                    BorderBrush="Black">
+                    BorderBrush="Black"
+                    VerticalContentAlignment="Center">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="4"/>
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
+                <TextBlock 
+                    Text="Забыли пароль?"
+                    Width="250"
+                    Height="20"
+                    FontSize="12"
+                    FontFamily="Segoe UI Semibold"
+                    Margin="0,2,0,10"
+                    Cursor="Hand"
+                    Foreground="Blue"/>
                 <TextBlock
                     Text="Неправильный логин или пароль!"
                     Width="250"
@@ -87,18 +98,23 @@
                     FontSize="12"
                     FontFamily="Segoe UI Semibold"
                     Margin="0,2,0,10"
-                    Foreground="Red"/>
+                    Foreground="Red"
+                    IsVisibleChanged="TextBlock_IsVisibleChanged"
+                    Visibility="Hidden"
+                    x:Name="LoginEror"/>
 
                 <Button 
                         Content="Войти в систему"
-                        Background="Transparent"
                         VerticalContentAlignment="Center"
                         Margin="10,35,20,0"
                         Width="200"
                         Height="30"
                         BorderThickness="1"
                         FontSize="14"
-                        BorderBrush="Black" Click="Button_Click">
+                        BorderBrush="Black"
+                        Background="Transparent"
+                        Cursor="Hand" 
+                        Click="ButnLogin_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -111,8 +127,8 @@
                     Margin="0,20,0,0"
                     Foreground="#737578"
                     BorderBrush="Transparent"
-                    FontSize="12">
-
+                    FontSize="12"
+                    Cursor="Hand">
                 </TextBox>
             </StackPanel>
         </Border>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 Z:\VisualStudio\MyProject\SportStoreEmployees\App.xaml
-2736615074
-2-1957146511
-15596009296
+3-2075653387
+2-1161671267
+16-310679082
 18-192136333
-Login.xaml;MainWindow.xaml;
+AddWindow.xaml;Login.xaml;MainWindow.xaml;
 
-False
+True
 
